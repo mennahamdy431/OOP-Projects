@@ -1,8 +1,7 @@
 #include "Books.h"
 
 int Books::count = 0;//counter to increment the id
-//int Books::numrate = 0;//counter to increment the number of rates
-//int Books::totalrates = 0;//for sum the total number of rates
+
 Books::Books()//default constructor make the member variable of the object empty
 {
     count++;
@@ -15,20 +14,23 @@ Books::Books()//default constructor make the member variable of the object empty
 }
 
 //parameterize constructor take 3 arguments for the parameterize object
-Books::Books(string Title, string ISBN, string Category) {
+Books::Books(string Title, string ISBN, string Category)
+{
     count++;
     id = count;
     title = Title;
     isbn = ISBN;
     category = Category;
+    rate = 0;
 }
 
-Books::Books(const Books &books)//Copy constructor
+Books::Books(const Books& books)//Copy constructor
 {
     title = books.title;
     isbn = books.isbn;
     category = books.category;
     id = books.id;
+    rate = books.rate;
 }
 
 void Books::setTitle(string Title)//set the title for the book
@@ -81,38 +83,46 @@ User Books::getAuthor()//get the author of the book
     return author;
 }
 
-void Books::rateBook(int Rate)//function take the rate and compute the avrage rate in the rate
+int Books::getRate()
 {
-    numrate++;//increment the number of rates
-    totalrates += Rate;//sum the
-    rate = double(totalrates) / double(numrate);//the avrage rate
-
+    return rate;
 }
 
+void Books::setRate(int Rate)//function take the rate and compute the average rate in the rate
+{
+    rate = Rate;
+}
+/*
+void Books::setNewRate(int Rate)
+{
+    rate = Rate;
+}
+*/
 
-bool Books::operator==(const Books &book)//operator over loading that check the 2 books equal or not
+bool Books::operator==(const Books& book)//operator over loading that check the 2 books equal or not
 {
     bool status;
     if (title == book.title && isbn == book.isbn && category == book.category && id == book.id &&
-        author == book.author) {
+        author == book.author)
+    {
         status = true;
-    } else
+    }
+    else
         status = false;
     return status;
 }
 
 
-ostream &operator<<(ostream &output, const Books &book)//operator overloading that output the book's object directly
+ostream& operator<<(ostream& output, const Books& book)//operator overloading that output the book's object directly
 {
 
     output << "\n========Book " << book.id << " info ========\n";
-    output << "Title : " << book.title << "|ISBN : " << book.isbn;
-    output << "|ID:" << book.id << "|Category:" << book.category << "|Avg Rating: " << book.rate << "\n";
-    output << "=================================================\n";
+    output << "Title : " << book.title << "\nISBN : " << book.isbn;
+    output << "\nID:" << book.id << "\nCategory:" << book.category << "\nAvg Rating: " << book.rate;
     return output;
 }
 
-istream &operator>>(istream &input, Books &book)//operator overloading that input the book's object directly
+istream& operator>>(istream& input, Books& book)//operator overloading that input the book's object directly
 {
     input >> book.title >> book.isbn >> book.category;
     return input;

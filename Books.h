@@ -1,4 +1,3 @@
-
 #ifndef BOOKS_H
 #define BOOKS_H
 
@@ -8,24 +7,30 @@
 
 using namespace std;
 
-class Books {
+class Books
+{
+
 private:
+    int id;
+    int rate;
     string title;
     string isbn;
-    int id;
     string category;
     User author;//The author is the user that write the book
-    double rate;
+
 public:
     //static member functions
-    static int count;
-    int numrate = 0;
-    int totalrates = 0;
+    static int count;//counter that incremental by one and make the id equal it
+    //int numrate = 0;
+    //int totalrates = 0;
 
     //constructors
     Books();//Default constructor
+
     Books(string, string, string);//parameterize constructor
-    Books(const Books &);//copy constructor
+
+    Books(const Books&);//copy constructor
+
     //Setters
     void setISBN(string);
 
@@ -37,7 +42,9 @@ public:
 
     void setAuthor(User);
 
-    void rateBook(int);
+    // void setNewRate(int);
+
+    void setRate(int);
 
     //Getters
     string getTitle();
@@ -48,14 +55,16 @@ public:
 
     int getId();
 
+    int getRate();
+
     User getAuthor();
 
     //operator overloading
-    bool operator==(const Books &book);
+    bool operator==(const Books& book);
 
-    friend ostream &operator<<(ostream &output, const Books &book);
+    friend ostream& operator<<(ostream& output, const Books& book);
 
-    friend istream &operator>>(istream &input, Books &book);
+    friend istream& operator>>(istream& input, Books& book);
 };
 
 #endif // BOOKS_H

@@ -1,9 +1,0 @@
-=======student 1 info========
-Name: Menna Hamdy Mahmoud
-ID:20190558
-=============================
-
-=======student 2 info========
-
-Name: Mohamed Ali Mohamed
-ID:20190466

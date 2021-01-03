@@ -1,4 +1,3 @@
-
 #ifndef MOHAMED_USER_H
 #define MOHAMED_USER_H
 
@@ -8,7 +7,8 @@
 using namespace std;
 
 
-class User {
+class User
+{
 private:
     string name;
     int age;
@@ -18,10 +18,11 @@ private:
 public:
     static int count;
 
-    //constractors
-    User();//Dafult constractors
-    User(string, int, string, string);//parametarize constractor
-    User(User &);//copy constractor
+    //constructors
+    User();
+    User(string, int, string, string);
+    User(User&);
+
     //Setters functions
     void setName(string);
 
@@ -45,11 +46,12 @@ public:
     int getId();
 
     //operator overloading
-    bool operator==(const User &);
+    bool operator==(const User&);
 
-    friend ostream &operator<<(ostream &, const User &);
+    friend ostream& operator<<(ostream&, const User&); // print user
 
-    friend istream &operator>>(istream &, User &);
+
+    friend istream& operator>>(istream&, User&);
 
 
 };
